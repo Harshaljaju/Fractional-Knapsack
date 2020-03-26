@@ -1,0 +1,34 @@
+# n = int(input())
+# v = list(map(int, input().split()))
+# w = list(map(int, input().split()))
+# wk = int(input())
+n=5
+v=[30,20,100,90,160]
+w=[5,10,20,30,40]
+wk=60
+fraction = []
+id = []
+for i in range(0,5):
+    # print("i",i)
+    a = v[i] / w[i]
+    # print("a",a)
+    fraction.append(a)                      # fraction is val/wt
+# print("v",v)
+# print("w",w)
+# print("fraction",fraction)
+list=[]
+for i in range(n):
+    list.append([v[i],w[i],fraction[i]])                # list[0]=value/profit,list[1]=weight of each item, list[2]=profit/weight
+list.sort(key=lambda list:list[2],reverse=True)
+# print(list)
+
+profit=0
+for i in list:
+        if i[1]<=wk and wk>0:
+            wk=wk-i[1]                              # 60-5=55, 55-20=35
+            profit=profit+1*i[0]                    # as the full amount is taken therefore profit is multiplied by 1
+        else:
+            a=wk                                    # a=35
+            wk=wk-a
+            profit=profit+ (a/i[1]*i[0])            #35/40*160 as only fraction is taken therefor fraction is multiplied by profit
+print(round(profit))
